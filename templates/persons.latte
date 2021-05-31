@@ -1,0 +1,72 @@
+{extends layout.latte}
+
+{block title}
+	Persons list
+{/block}
+
+{block body}
+	<div class="container md-5">
+		<form method="get" action="{link search}">
+			<div class="input-group mb-3">
+				<input tupe="terx" name="query" class="form-control" placeholder="Search for user">
+			<div class="input-group-append">
+				<button type="submit" class="btn btn-primary">Search</button>
+			</div>
+			</div>
+		</form>
+
+		<a href="{link newPerson}" class="btn btn-success">
+			<i class="fas fa-user-plus"></i> Add new person
+		</a>
+
+	<table class="table table-hover table-striped">
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Nickname</th>
+			<th>City</th>
+			<th colspan="3"></th>
+		</tr>
+		{foreach $persons_list as $p}
+			<tr>
+				<td>{$p['first_name']}</td>
+				<td>{$p['last_name']}</td>
+				<td>{$p['nickname']}</td>
+				<td>{$p['city']}</td>
+				<td class="text-center">
+					<a href="{link showDetails, [id_person => $p['id_person']] }">
+						<button class="btn-sm btn-primary">
+							<span class="fa fa-details"></span> Details
+						</button>
+					</a>
+				</td>
+				<td class="text-center">
+					<a href="{link editPerson, [id_person => $p['id_person']] }">
+						<button class="btn-sm btn-primary">
+							<span class="fa fa-edit"></span> Edit
+						</button>
+					</a>
+				</td>
+
+				<td>
+					<form onsubmit=" return confirm('Are your sure?')" method="get" action="{link deletePerson, [id_person => $p['id_person']]}">
+						<button class="btn-sm btn-danger">Delete</button>
+					</form>
+				</td>
+
+			</tr>
+		{/foreach}
+	</table>
+
+		<table id="pagination">
+			<tr>
+				{for $i = 0; $i < $total_pages; $i ++}
+					<td>
+					<a href="{link persons}?page={$i}&limit={$limit}">{$i + 1}</a>
+					</td>
+				{/for}
+			</tr>
+		</table>
+	</div>
+
+{/block}

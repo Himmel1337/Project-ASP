@@ -1,0 +1,89 @@
+{extends layout.latte}
+
+{block title} {$header} {/block}
+
+
+{block body}
+    <div class="container">
+        <h1>{$header}</h1>
+
+        <!-- MEETING -->
+        <div class="form-row">
+            <table class="table">
+
+                <tr>
+                    <th>Start</th>
+                    <th>Description</th>
+                    <th>Duration</th>
+                </tr>
+
+                <tr>
+                    <td>{$formData['start']}</td>
+                    <td>{$formData['description']}</td>
+                    <td>{$formData['duration']}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- Location -->
+
+        <div class="form-row">
+            <label for="location">Location</label>
+            <table class="table">
+
+                <tr>
+                    <th>City</th>
+                    <th>Street name</th>
+                    <th>Street number</th>
+                    <th>ZIP</th>
+                </tr>
+
+                <tr>
+                    <td>{$formData['city']}</td>
+                    <td>{$formData['street_name']}</td>
+                    <td>{$formData['street_number']}</td>
+                    <td>{$formData['zip']}</td>
+                </tr>
+
+                <tr>
+                    <th>Country</th>
+                    <th>Place</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                </tr>
+
+                <tr>
+                    <td>{$formData['country']}</td>
+                    <td>{$formData['name']}</td>
+                    <td>{$formData['latitude']}</td>
+                    <td>{$formData['longitude']}</td>
+                </tr>
+
+            </table>
+        </div>
+
+            <!-- MEMBERS -->
+            <div class="form-row">
+                <label for="members">Members</label>
+                <table class="table">
+
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+
+                    {foreach $member as $formData}
+                        <tr>
+                            <td>{$formData["first_name"]}</td>
+                            <td>{$formData["last_name"]}</td>
+                        </tr>
+                    {/foreach}
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{/block}

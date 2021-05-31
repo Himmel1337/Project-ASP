@@ -1,0 +1,76 @@
+{extends layout.latte}
+
+{block title}
+    Meetings list
+{/block}
+
+
+{block body}
+    <div class="container md-5">
+        <form method="get" action="{link searchMeeting}">
+            <div class="input-group mb-3">
+                <input tupe="text" name="query" class="form-control" placeholder="Search for meeting">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <a href="{link newMeeting}" class="btn btn-success">
+            <i class="fas fa-plus-square"></i> Add new meeting
+        </a>
+
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>Start</th>
+                <th>City</th>
+                <th>Place</th>
+                <th>Description</th>
+                <th colspan="3"></th>
+            </tr>
+            {foreach $meetings_list as $m}
+                <tr>
+                    <td>{$m['start']}</td>
+                    <td>{$m['city']}</td>
+                    <td>{$m['name']}</td>
+                    <td>{$m['description']}</td>
+
+                    <td class="text-center">
+                        <a href="{link detailsMeeting, [id_meeting => $m['id_meeting']] }"*>
+                            <button class="btn-sm btn-primary">
+                                <span class="fa fa-details"></span> Details
+                            </button>
+                        </a>
+                    </td>
+
+                    <td class="text-center">
+                        <a href="{link editMeeting, [id_meeting => $m['id_meeting']] }">
+                            <button class="btn-sm btn-primary">
+                                <span class="fa fa-edit"></span> Edit
+                            </button>
+                        </a>
+                    </td>
+
+                    <td>
+                        <form onsubmit=" return confirm('Are your sure?')" method="get"
+                              action="{link deleteMeeting, [id_meeting => $m['id_meeting']]}">
+                            <button class="btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+
+                </tr>
+            {/foreach}
+        </table>
+
+        <table id="pagination">
+            <tr>
+                {for $i = 0; $i < $total_pages; $i ++}
+                    <td>
+                        <a href="{link meetings}?page={$i}&limit={$limit}">{$i + 1}</a>
+                    </td>
+                {/for}
+            </tr>
+        </table>
+    </div>
+
+{/block}

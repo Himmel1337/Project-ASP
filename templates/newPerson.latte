@@ -1,0 +1,100 @@
+{extends layout.latte}
+
+{block title} {$header} {/block}
+
+
+{block body}
+    <div class="container">
+        <h1>{$header}</h1>
+
+        <!-- message-->
+        {if isset($message)}
+            <p>{$message}</p>
+        {/if}
+        <form method="post">
+            <div class="form-row">
+
+                <!-- PERSON -->
+
+                <div class="form-row">
+                    <label for="person">Person</label>
+                    <table class="table">
+
+                        <tr>
+                            <th>First name*</th>
+                            <th>Last name*</th>
+                            <th>Nickname*</th>
+                        </tr>
+
+                        <tr>
+                            <td><input class="form-control" type="text" name="first_name" required value="{$formData['first_name']}"></td>
+                            <td><input class="form-control" type="text" name="last_name" required value="{$formData['last_name']}"></td>
+                            <td><input class="form-control" type="text" name="nickname" required value="{$formData['nickname']}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Gender</th>
+                            <th>Height</th>
+                            <th>Birthday</th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <select class="form-control" type="text" name="gender">
+{*                                    <option value"">Gender selection</option>*}
+                                    <option value="male" {$formData['gender'] == 'male'}>Male</option>
+                                    <option value="female" {$formData['gender'] == 'female'}>Female</option>
+                                </select>
+                            </td>
+                            <td><input class="form-control" type="number" name="height" value="{$formData['height']}"></td>
+                            <td><input class="form-control" type="date" name="birth_day" value="{$formData['birth_day']}"></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- Location -->
+
+            <div class="form-row">
+                <label for="location">Location</label>
+                <table class="table">
+
+                    <tr>
+                        <th>City</th>
+                        <th>Street name</th>
+                        <th>Street number</th>
+                        <th>ZIP</th>
+                    </tr>
+
+                    <tr>
+                        <td><input class="form-control" type="text" name="city" value="{$formData['city']}"></td>
+                        <td><input class="form-control" type="text" name="street_name" value="{$formData['street_name']}"></td>
+                        <td><input class="form-control" type="number" name="street_number" value="{$formData['street_number']}"></td>
+                        <td><input class="form-control" type="text" name="zip" value="{$formData['zip']}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Country</th>
+                        <th>Place</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+
+                    <tr>
+                        <td><input class="form-control" type="text" name="country" value="{$formData['country']}"></td>
+                        <td><input class="form-control" type="text" name="name" value="{$formData['name']}"></td>
+                        <td><input class="form-control" type="number" name="latitude" value="{$formData['latitude']}"></td>
+                        <td><input class="form-control" type="number" name="longitude" value="{$formData['longitude']}"></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <span class="fa fa-plus"></span> Submit
+            </button>
+        </form>
+    </div>
+{/block}

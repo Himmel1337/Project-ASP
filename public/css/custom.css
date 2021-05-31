@@ -1,0 +1,26 @@
+
+body {
+    margin-top: 2%;
+}
+
+nav {
+    float: left;
+    margin: 1%;
+}
+
+nav li{
+    list-style: none;
+    margin: 10%;
+}
+
+#pagination td{
+    margin: 10px;
+    display: inline-block;
+}
+
+
+label {
+    color: blue;
+}
+
+

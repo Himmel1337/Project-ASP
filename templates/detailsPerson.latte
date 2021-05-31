@@ -1,0 +1,152 @@
+{extends layout.latte}
+
+{block title} {$header} {/block}
+
+
+{block body}
+    <div class="container">
+        <h1>{$header}</h1>
+
+        <!-- PERSON -->
+
+        <div class="form-row">
+            <label for="person">Person</label>
+            <table class="table">
+
+                <tr>
+                    <th>First name*</th>
+                    <th>Last name*</th>
+                    <th>Nickname*</th>
+                </tr>
+
+                <tr>
+                    <td>{$formData['first_name']}</td>
+                    <td>{$formData['last_name']}</td>
+                    <td>{$formData['nickname']}</td>
+                </tr>
+
+                <tr>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Birthday</th>
+                </tr>
+
+                <tr>
+                    <td>{$formData['gender']}</td>
+                    <td>{$formData['height']}</td>
+                    <td>{$formData['birth_day']}</td>
+                </tr>
+
+            </table>
+        </div>
+
+
+    <!-- Location -->
+
+    <div class="form-row">
+        <label for="location">Location</label>
+        <table class="table">
+
+            <tr>
+                <th>City</th>
+                <th>Street name</th>
+                <th>Street number</th>
+                <th>ZIP</th>
+            </tr>
+
+            <tr>
+                <td>{$formData['city']}</td>
+                <td>{$formData['street_name']}</td>
+                <td>{$formData['street_number']}</td>
+                <td>{$formData['zip']}</td>
+            </tr>
+
+            <tr>
+                <th>Country</th>
+                <th>Place</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+
+            <tr>
+                <td>{$formData['country']}</td>
+                <td>{$formData['name']}</td>
+                <td>{$formData['latitude']}</td>
+                <td>{$formData['longitude']}</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <!-- Contact -->
+    <div class="form-row">
+        <table class="table">
+            <label for="contact">Contacts</label><br>
+            {foreach $contact as $contact}
+                <tr>
+                    <th>{$contact['name']}</th>
+                    <th>{$contact['contact']}</th>
+                </tr>
+            {/foreach}
+        </table>
+    </div>
+
+    <!-- RELATION -->
+
+    <div class="form-row">
+        <table class="table">
+            <label for="haveRelation">Relations</label>
+
+            <tr>
+                <th>Relation</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+
+            {foreach $person1 as $person1}
+            <tr>
+                <td>{$person1['name']}</td>
+                <td>{$person1['first_name']}</td>
+                <td>{$person1['last_name']}</td>
+            </tr>
+            {/foreach}
+
+
+            {foreach $person2 as $person2}
+                <tr>
+                    <td>{$person2['name']}</td>
+                    <td>{$person2['first_name']}</td>
+                    <td>{$person2['last_name']}</td>
+                </tr>
+            {/foreach}
+
+        </table>
+    </div>
+
+        <!-- METING-->
+        <div class="form-row">
+            <table class="table">
+                <label for="meetings">Meetings</label>
+
+                <tr>
+                    <th>Start</th>
+                    <th>Duration</th>
+                    <th>City</th>
+                    <th>Place</th>
+                </tr>
+
+
+                {foreach $member as $member}
+                    <tr>
+                        <td>{$member['start']}</td>
+                        <td>{$member['duration']}</td>
+                        <td>{$member['city']}</td>
+                        <td>{$member['name']}</td>
+                    </tr>
+                {/foreach}
+
+            </table>
+        </div>
+
+    </div>
+{/block}

@@ -1,0 +1,12 @@
+<IfModule !mod_authz_core.c>
+    <FilesMatch .env>
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_authz_core.c>
+    <FilesMatch .env>
+        Require all denied
+    </FilesMatch>
+</IfModule>

@@ -1,0 +1,36 @@
+version: '2'
+services:
+
+  web:
+    build:
+      context: ./docker
+      dockerfile: DockerfileWeb
+    ports:
+      - 8080:80
+    volumes:
+      - ./docker:/tmp/docker
+      - ./logs:/var/www/logs
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+      - ./templates:/var/www/templates
+      - ./vendor:/var/www/vendor
+#    command:
+#      - "/tmp/docker/start-web.sh"
+    links:
+      - postgres
+    depends_on:
+      - "postgres"
+
+  postgres:
+    image: "postgres:9.6.3"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: db
+    volumes:
+      - ./docker:/tmp/docker
+
+  adminer:
+    image: adminer
+    ports:
+      - 8081:8080

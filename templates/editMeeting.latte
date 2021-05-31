@@ -1,0 +1,130 @@
+{extends layout.latte}
+
+{block title} {$header} {/block}
+
+
+{block body}
+    <div class="container">
+        <h1>{$header}</h1>
+
+        <!-- message-->
+        {if isset($message)}
+            <p>{$message}</p>
+        {/if}
+        <form method="post">
+            <div class="form-row">
+
+
+                <!-- Meeting -->
+
+                <div class="form-row">
+                    <label for="location">Meeting</label>
+                    <table class="table">
+
+                        <tr>
+                            <th>Start*</th>
+                            <th>Description*</th>
+                            <th>Duration</th>
+                        </tr>
+
+                        <tr>
+                            <td><input class="form-control" type="datetime-local" name="start" required value="{$formData['start']}"></td>
+                            <td><input class="form-control" type="text" name="description" required value="{$formData['description']}"></td>
+                            <td><input class="form-control" type="time" name="duration" value="{$formData['duration']}"></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <!-- Location -->
+
+            <div class="form-row">
+                <label for="location">Location</label>
+                <table class="table">
+
+                    <tr>
+                        <th>City*</th>
+                        <th>Street name</th>
+                        <th>Street number</th>
+                        <th>ZIP</th>
+                    </tr>
+
+                    <tr>
+                        <td><input class="form-control" type="text" name="city" required value="{$formData['city']}"></td>
+                        <td><input class="form-control" type="text" name="street_name" value="{$formData['street_name']}"></td>
+                        <td><input class="form-control" type="number" name="street_number" value="{$formData['street_number']}"></td>
+                        <td><input class="form-control" type="text" name="zip" value="{$formData['zip']}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Country</th>
+                        <th>Place</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+
+                    <tr>
+                        <td><input class="form-control" type="text" name="country" value="{$formData['country']}"></td>
+                        <td><input class="form-control" type="text" name="name" value="{$formData['name']}"></td>
+                        <td><input class="form-control" type="number" name="latitude" value="{$formData['latitude']}"></td>
+                        <td><input class="form-control" type="number" name="longitude" value="{$formData['longitude']}"></td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+
+            <!-- ALREADY MEMBERS -->
+            <div class="form-row">
+                <table class="table">
+                    <label for="members">Members</label>
+
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Delete Member</th>
+                    </tr>
+
+                    {foreach $alreadyMember as $alreadyMember}
+                        <tr>
+                            <td>{$alreadyMember["first_name"]}</td>
+                            <td>{$alreadyMember["last_name"]}</td>
+                            <td>
+                                <input type="radio" name="deleteMember" value="{$alreadyMember['id_person']}">
+                            </td>
+                        </tr>
+                    {/foreach}
+
+                </table>
+            </div>
+
+            <!-- ADD MEMBERS -->
+            <div class="form-row">
+                <div class="">
+
+                    <label for="addMember">Add Member</label><br>
+
+                    <select class="form-control" name="id_person">
+                    <option value = "">Add member</option>
+                    {foreach $addMember as $addMember}
+                            <option name="id_person" value="{$addMember['id_person']}">
+                                {$addMember['first_name']} {$addMember['last_name']}
+                            </option>
+                    {/foreach}
+                    </select>
+
+                        <input class="form-control" type="hidden" name="id_meeting" value="{$formData['id_meeting']}">
+
+                </div>
+            </div><br>
+
+
+            <button type="submit" class="btn btn-success">
+                <span class="fa fa-plus"></span> Submit
+            </button>
+        </form>
+    </div>
+{/block}

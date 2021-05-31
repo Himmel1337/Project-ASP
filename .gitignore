@@ -1,0 +1,8 @@
+# /vendor/
+/logs/*
+!/logs/README.md
+/.idea
+/nbproject
+/cache/*
+!/cache/.gitignore
+/.env

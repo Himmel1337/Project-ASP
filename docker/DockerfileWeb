@@ -1,0 +1,9 @@
+FROM php:7.2-apache
+RUN apt-get update \
+ && apt-get install -y libpq-dev wget curl mc
+RUN docker-php-ext-install -j$(nproc) pdo
+RUN docker-php-ext-install -j$(nproc) pdo_pgsql
+RUN a2enmod rewrite
+RUN mkdir /var/www/cache
+RUN chmod 0777 /var/www/cache
+COPY ./.env /var/www/.env
